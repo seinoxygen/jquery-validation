@@ -191,7 +191,7 @@
 	 * Checks if the numeric value is between two values.
 	 * 
  	 * @param string value
- 	 * @param integer value
+ 	 * @param string value
 	 */
 	plugin.between = function(value, options) {
 		var minmax = options.split('-');
@@ -199,6 +199,20 @@
 			return true;
 		}
 		if(value > minmax[1]){
+			return true;
+		}
+		return false;	
+	};
+	
+	/**
+	 * Checks if the value matches with the field.
+	 * 
+ 	 * @param string value
+ 	 * @param string value
+	 */
+	plugin.matches = function(value, options) {
+		var other = $(options).val();
+		if(value !== other){
 			return true;
 		}
 		return false;	
