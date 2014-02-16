@@ -247,6 +247,17 @@
 	};
 	
 	/**
+	 * Checks if the value is a valid ip.
+	 * http://stackoverflow.com/questions/106179/regular-expression-to-match-hostname-or-ip-address 
+	 *
+ 	 * @param string value
+	 */
+	plugin.ip = function(value) {
+		var regex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
+		return !regex.test(value);
+	};
+	
+	/**
 	 * Checks if the value is a valid time.
 	 * 
  	 * @param string value
