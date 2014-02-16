@@ -52,5 +52,15 @@ required  | Checks if the field is not empty
 exactlength[5]  | Checks if the field is 5 charactes length
 minlength[5]  | Checks if the field at least 5 charactes long
 maxlength[5]  | Checks if the field is less than 5 characters long
+alpha  | Checks if the field contains letters
+alphanumeric  | Checks if the field contains letters and numbers
 numeric  | Checks if the field is numeric
+integer  | Checks if the field is integer
+natural  | Checks if the field is natural
+decimal  | Checks if the field is decimal
 between[5-10]  | Checks if the numeric value is between 5 and 10
+matches[#password] | Checks if the field contains the same as field id password
+email  | Checks if the field contains a valid email
+url  | Checks if the field contains a valid url
+time  | Checks if the field contains a valid time
+date  | Checks if the field contains a valid date
