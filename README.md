@@ -24,3 +24,12 @@ Use tha data attribute "rules" to let the plugin know what rules are aplying to 
 ```html
 <input type="text" class="validate" data-rules="required"/>
 ```
+
+## Rules
+
+Usage | Description
+------------- | -------------
+required  | Checks if the field is not empty
+exactlength[5]  | Checks if the field is 5 charactes length
+minlength[5]  | Checks if the field at least 5 charactes long
+maxlength[5]  | Checks if the field is less than 5 characters long
