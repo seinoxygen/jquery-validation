@@ -13,16 +13,35 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 
 ## Initialize
 
+#### Normal
+This way the plugin will validate fields on keyup
 ```javascript
 $('.validate').validate();
 ```
 
+#### With return
+With this way the plugin will run when the button is pressed and will return if the fields are valid. Also it will check validations on keyup
+```javascript
+$('.runvalidation').click(function(e){
+	e.preventDefault();
+	var valid = $('.validate').validate({auto: true});
+	if(valid){
+		alert("Great!");
+	}
+});
+```
+
+
 ## Usage
 
-Use tha data attribute "rules" to let the plugin know what rules are aplying to the field.
+Use tha data attribute "rules" to let the plugin know what rules are aplying to the field. They must be separated by colon "|".
 
 ```html
 <input type="text" class="validate" data-rules="required"/>
+```
+
+```html
+<input type="text" class="validate" data-rules="required|between[0-3]"/>
 ```
 
 ## Rules
