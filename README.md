@@ -14,7 +14,7 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 ## Initialize
 
 ```javascript
-$('.fields').validate();
+$('.validate').validate();
 ```
 
 ## Usage
