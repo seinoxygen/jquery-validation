@@ -214,7 +214,7 @@
 	 * Checks if the value matches with the field.
 	 * 
  	 * @param string value
- 	 * @param string value
+ 	 * @param string options
 	 */
 	plugin.matches = function(value, options) {
 		var other = $(options).val();
@@ -275,6 +275,81 @@
 	plugin.date = function(value) {
 		var regex = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
 		return !regex.test(value);
+	};
+	
+	/**
+	 * Checks if the value is a valid credit card number.
+	 * 
+ 	 * @param string value
+ 	 * @param string options
+	 */
+	plugin.cc = function(value, options) {
+		var cc = [
+			/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/, // Visa
+			/^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/, // Mastercard
+			/^6011-?\d{4}-?\d{4}-?\d{4}$/, // Discover
+			/^3[4,7]\d{13}$/, // American Express
+			/^3[0,6,8]\d{12}$/ // Diners
+		];
+		
+		// If options is not set check with all regex
+		var multi = true;
+		if(options.length > 0){
+			multi = false;
+		}
+		
+		if (options == "visa") {
+			var regex = cc[0];
+	   	}
+	   	else if (options == "mastercard") {
+			var regex = cc[1];
+	   	}
+	   	else if (options == "ciscover") {
+			var regex = cc[2];
+	   	}
+	   	else if (options == "amex") {
+			var regex = cc[3];
+	   	}
+	   	else if (options == "diners") {
+			var regex = cc[4];
+		} 
+		
+		if(multi === true){
+			var valid = false;
+			for(var i = 0; i < cc.length; i++){
+				if(cc[i].test(value)){
+					valid = true;
+				}
+			}
+			if(valid === false){
+				return true;
+			}
+		}
+		else{
+			if(regex.test(value) === false){
+				return true;
+			}
+		}
+		
+		// Remove all dashes for the checksum
+		value = value.split("-").join("");
+		
+		// Add even digits in even length strings or odd digits in odd length strings.
+		var checksum = 0;
+		for (var i=(2-(value.length % 2)); i<=value.length; i+=2) {
+			checksum += parseInt(value.charAt(i-1));
+		}
+		// Analyze odd digits in even length strings or even digits in odd length strings.
+		for (var i=(value.length % 2) + 1; i<value.length; i+=2) {
+			var digit = parseInt(value.charAt(i-1)) * 2;
+			if (digit < 10) { 
+				checksum += digit; 
+			} 
+			else { 
+				checksum += (digit-9); 
+			}
+		}
+		return !((checksum % 10) === 0);
 	};
 		
 }(jQuery));
