@@ -98,6 +98,24 @@
 		}
 		return false;	
 	};
+	
+	/**
+	 * Checks if the field only contains alpha characters.
+ 	 * @param string value
+	 */
+	plugin.alpha = function(value) {
+		var regex = /^([a-z])+$/i;
+		return !regex.test(value);
+	};
+	
+	/**
+	 * Checks if the field only contains alpha-numeric characters.
+ 	 * @param string value
+	 */
+	plugin.alphanumeric = function(value) {
+		var regex = /^([a-z0-9])+$/i;
+		return !regex.test(value);
+	};
 		
 	/**
 	 * Checks if the field is numeric.
