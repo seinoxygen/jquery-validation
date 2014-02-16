@@ -217,5 +217,25 @@
 		}
 		return false;	
 	};
+	
+	/**
+	 * Checks if the value is a valid time.
+	 * 
+ 	 * @param string value
+	 */
+	plugin.time = function(value) {
+		var regex = /^([0]\d|[1][0-2]):([0-5]\d)\s?(?:AM|PM)$/;
+		return !regex.test(value);
+	};
+	
+	/**
+	 * Checks if the value is a valid date.
+	 * 
+ 	 * @param string value
+	 */
+	plugin.date = function(value) {
+		var regex = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
+		return !regex.test(value);
+	};
 		
 }(jQuery));
