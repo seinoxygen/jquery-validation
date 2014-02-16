@@ -33,3 +33,5 @@ required  | Checks if the field is not empty
 exactlength[5]  | Checks if the field is 5 charactes length
 minlength[5]  | Checks if the field at least 5 charactes long
 maxlength[5]  | Checks if the field is less than 5 characters long
+numeric  | Checks if the field is numeric
+between[5-10]  | Checks if the numeric value is between 5 and 10
