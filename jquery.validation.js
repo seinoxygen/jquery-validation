@@ -24,6 +24,10 @@
 			
 			$(this).keyup(function(e) {
 				e.preventDefault();
+				// Ignore enter
+				if (e.which == 13) {
+					return;
+				}
 				error = plugin['check']($(this), settings);
 			});
 		});
