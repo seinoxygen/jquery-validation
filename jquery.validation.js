@@ -158,6 +158,26 @@
 	};
 	
 	/**
+	 * Checks if the field is integer.
+	 * 
+ 	 * @param string value
+	 */
+	plugin.integer = function(value) {
+		var regex = /^[\-+]?[0-9]+$/;
+		return !regex.test(value);
+	};
+	
+	/**
+	 * Checks if the field is decimal.
+	 * 
+ 	 * @param string value
+	 */
+	plugin.decimal = function(value) {
+		var regex = /^[\-+]?[0-9]+\.[0-9]+$/;
+		return !regex.test(value);
+	};
+	
+	/**
 	 * Checks if the numeric value is between two values.
 	 * 
  	 * @param string value
