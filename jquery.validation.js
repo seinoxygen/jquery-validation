@@ -98,5 +98,30 @@
 		}
 		return false;	
 	};
+		
+	/**
+	 * Checks if the field is numeric.
+ 	 * @param string value
+	 */
+	plugin.numeric = function(value) {
+		var regex = /^[\-+]?[0-9]*\.?[0-9]+$/;
+		return !regex.test(value);
+	};
+	
+	/**
+	 * Checks if the numeric value is between two values.
+ 	 * @param string value
+ 	 * @param integer value
+	 */
+	plugin.between = function(value, options) {
+		var minmax = options.split('-');
+		if(value < minmax[0]){
+			return true;
+		}
+		if(value > minmax[1]){
+			return true;
+		}
+		return false;	
+	};
 	
 }(jQuery));
