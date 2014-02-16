@@ -168,6 +168,16 @@
 	};
 	
 	/**
+	 * Checks if the field is natrual.
+	 * 
+ 	 * @param string value
+	 */
+	plugin.natrual = function(value) {
+		var regex = /^[0-9]+$/;
+		return !regex.test(value);
+	};
+	
+	/**
 	 * Checks if the field is decimal.
 	 * 
  	 * @param string value
