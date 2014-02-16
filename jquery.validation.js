@@ -13,13 +13,16 @@
 		// Update all configs
 		var settings = $.extend(defaults, options);
 		
-		var error = false;
+		var has_errors = false;
 		
 		// Check all fields
 		$(this).each(function() {
 			
 			if(settings.auto === true){
-				error = plugin['check']($(this), settings);
+				var error = plugin.check($(this), settings);
+				if(error === true){
+					has_errors = true;
+				}
 			}
 			
 			$(this).keyup(function(e) {
@@ -28,12 +31,15 @@
 				if (e.which == 13) {
 					return;
 				}
-				error = plugin['check']($(this), settings);
+				var error = plugin.check($(this), settings);
+				if(error === true){
+					has_errors = true;
+				}
 			});
 		});
 		
 		// Invert result !error = validation successful
-		return !error;
+		return !has_errors;
 	};
 	
 	/**
@@ -128,7 +134,7 @@
 	};
 	
 	/**
-	 * Checks if the field only contains alpha characters.
+	 * Checks if the field only contains letters.
 	 * 
  	 * @param string value
 	 */
@@ -186,12 +192,12 @@
 		var regex = /^[\-+]?[0-9]+\.[0-9]+$/;
 		return !regex.test(value);
 	};
-	
+		
 	/**
 	 * Checks if the numeric value is between two values.
 	 * 
  	 * @param string value
- 	 * @param string value
+ 	 * @param integer value
 	 */
 	plugin.between = function(value, options) {
 		var minmax = options.split('-');
