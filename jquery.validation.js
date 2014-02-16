@@ -63,4 +63,40 @@
 		return false;		
 	};
 	
+	/**
+	 * Checks if the field is x characters long.
+ 	 * @param string value
+ 	 * @param integer value
+	 */
+	plugin.exactlength = function(value, options) {
+		if(value.length == options){
+			return true;
+		}
+		return false;	
+	};
+	
+	/**
+	 * Checks if the field is at least x characters long.
+ 	 * @param string value
+ 	 * @param integer value
+	 */
+	plugin.minlength = function(value, options) {
+		if(value.length < options){
+			return true;
+		}
+		return false;	
+	};
+	
+	/**
+	 * Checks if the field is less than x characters long.
+ 	 * @param string value
+ 	 * @param integer value
+	 */
+	plugin.maxlength = function(value, options) {
+		if(value.length > options){
+			return true;
+		}
+		return false;	
+	};
+	
 }(jQuery));
