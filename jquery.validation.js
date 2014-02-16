@@ -28,13 +28,13 @@
 					
 					// Check if arguments are enclosed in brackets			
 					var groups = regex.exec(rule);	
-					if(groups != null){
+					if(groups !== null){
 						func = groups[1];
 						options = groups[2];
 					}
 					
 					// If the function exists call it.			
-					if (typeof(plugin[func]) != "undefined") {
+					if (typeof(plugin[func]) !== "undefined") {
 						error = plugin[func]($(this).val(), options);
 					}
 				}
