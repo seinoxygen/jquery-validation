@@ -115,10 +115,10 @@
 	 */
 	plugin.between = function(value, options) {
 		var minmax = options.split('-');
-		if(value >= minmax[0]){
+		if(value < minmax[0]){
 			return true;
 		}
-		if(value <= minmax[1]){
+		if(value > minmax[1]){
 			return true;
 		}
 		return false;	
