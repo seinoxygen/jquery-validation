@@ -28,7 +28,7 @@
 			$(this).keyup(function(e) {
 				e.preventDefault();
 				// Ignore enter
-				if (e.which == 13) {
+				if (e.which === 13) {
 					return;
 				}
 				var error = plugin.check($(this), settings);
