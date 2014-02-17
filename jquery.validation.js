@@ -338,11 +338,11 @@
 		// Add even digits in even length strings or odd digits in odd length strings.
 		var checksum = 0;
 		for (var i=(2-(value.length % 2)); i<=value.length; i+=2) {
-			checksum += parseInt(value.charAt(i-1));
+			checksum += parseInt(value.charAt(i-1),10);
 		}
 		// Analyze odd digits in even length strings or even digits in odd length strings.
 		for (var i=(value.length % 2) + 1; i<value.length; i+=2) {
-			var digit = parseInt(value.charAt(i-1)) * 2;
+			var digit = parseInt(value.charAt(i-1),10) * 2;
 			if (digit < 10) { 
 				checksum += digit; 
 			} 
