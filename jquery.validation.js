@@ -293,29 +293,7 @@
 		];
 		
 		// If options is not set check with all regex
-		var multi = true;
-		if(options.length > 0){
-			multi = false;
-		}
-		
-		var regex;
-		if(options === "visa"){
-			regex = cc[0];
-	   	}
-	   	else if(options === "mastercard"){
-			regex = cc[1];
-		}
-	   	else if(options === "discover"){
-			regex = cc[2];
-	   	}
-	   	else if(options === "amex"){
-			regex = cc[3];
-	   	}
-	   	else if(options === "diners"){
-			regex = cc[4];
-		} 
-		
-		if(multi === true){
+		if(options.length === 0){
 			var valid = false;
 			for(var i = 0; i < cc.length; i++){
 				if(cc[i].test(value)){
@@ -327,9 +305,24 @@
 			}
 		}
 		else{
-			if(regex.test(value) === false){
-				return true;
+			var regex;
+			if(options === "visa"){
+				regex = cc[0];
 			}
+			else if(options === "mastercard"){
+				regex = cc[1];
+			}
+			else if(options === "discover"){
+				regex = cc[2];
+			}
+			else if(options === "amex"){
+				regex = cc[3];
+			}
+			else if(options === "diners"){
+				regex = cc[4];
+			}
+		
+			return !regex.test(value);
 		}
 		
 		// Remove all dashes for the checksum
