@@ -298,19 +298,19 @@
 			multi = false;
 		}
 		
-		if (options == "visa") {
+		if (options === "visa"){
 			var regex = cc[0];
 	   	}
-	   	else if (options == "mastercard") {
+	   	else if (options === "mastercard"){
 			var regex = cc[1];
 	   	}
-	   	else if (options == "ciscover") {
+	   	else if (options === "discover"){
 			var regex = cc[2];
 	   	}
-	   	else if (options == "amex") {
+	   	else if (options === "amex"){
 			var regex = cc[3];
 	   	}
-	   	else if (options == "diners") {
+	   	else if (options === "diners"){
 			var regex = cc[4];
 		} 
 		
