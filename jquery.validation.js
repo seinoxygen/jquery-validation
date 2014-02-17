@@ -298,20 +298,21 @@
 			multi = false;
 		}
 		
-		if (options === "visa"){
-			var regex = cc[0];
+		var regex;
+		if(options === "visa"){
+			regex = cc[0];
 	   	}
-	   	else if (options === "mastercard"){
-			var regex = cc[1];
+	   	else if(options === "mastercard"){
+			regex = cc[1];
+		}
+	   	else if(options === "discover"){
+			regex = cc[2];
 	   	}
-	   	else if (options === "discover"){
-			var regex = cc[2];
+	   	else if(options === "amex"){
+			regex = cc[3];
 	   	}
-	   	else if (options === "amex"){
-			var regex = cc[3];
-	   	}
-	   	else if (options === "diners"){
-			var regex = cc[4];
+	   	else if(options === "diners"){
+			regex = cc[4];
 		} 
 		
 		if(multi === true){
@@ -349,7 +350,7 @@
 				checksum += (digit-9); 
 			}
 		}
-		return !((checksum % 10) === 0);
+		return ((checksum % 10) !== 0);
 	};
 		
 }(jQuery));
