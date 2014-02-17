@@ -293,7 +293,29 @@
 		];
 		
 		// If options is not set check with all regex
-		if(options.length === 0){
+		var multi = true;
+		if(options.length > 0){
+			multi = false;
+		}
+		
+		var regex;
+		if(options === "visa"){
+			regex = cc[0];
+	   	}
+	   	else if(options === "mastercard"){
+			regex = cc[1];
+		}
+	   	else if(options === "discover"){
+			regex = cc[2];
+	   	}
+	   	else if(options === "amex"){
+			regex = cc[3];
+	   	}
+	   	else if(options === "diners"){
+			regex = cc[4];
+		} 
+		
+		if(multi === true){
 			var valid = false;
 			for(var i = 0; i < cc.length; i++){
 				if(cc[i].test(value)){
@@ -305,23 +327,6 @@
 			}
 		}
 		else{
-			var regex;
-			if(options === "visa"){
-				regex = cc[0];
-			}
-			else if(options === "mastercard"){
-				regex = cc[1];
-			}
-			else if(options === "discover"){
-				regex = cc[2];
-			}
-			else if(options === "amex"){
-				regex = cc[3];
-			}
-			else if(options === "diners"){
-				regex = cc[4];
-			}
-		
 			return !regex.test(value);
 		}
 		
