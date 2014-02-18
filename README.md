@@ -5,7 +5,7 @@ Simple validation plugin that uses data type attributes as validation rules.
 
 ## Installation
 
-Include script *after* the jQuery library (unless you are packaging scripts somehow else):
+Include script *after* the jQuery library.
 
 ```html
 <script src="/path/to/jquery.validation.js"></script>
@@ -15,23 +15,23 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 ## Initialize
 
 #### Normal
-This way the plugin will validate fields on keyup
+This way the plugin will validate fields on keyup.
 ```javascript
 $('.validate').validate();
 ```
 
-#### With return
-This way the plugin will run when the button is pressed and will call teh callback functions. Also it will check validations on keyup.
+#### With callbacks
+This way the plugin will run when the button is pressed and will call the callback functions. Also it will check validations on keyup.
 ```javascript
 $('.runvalidation').click(function(e){
 	e.preventDefault();
 	$('.validate').validate({
 		force: true,
-		success: function(){
+		success: function(element){
 			alert("Great! Let's do something!");
 		},
-		error: function(){
-			alert("Booo!");
+		error: function(element, msg){
+			alert(msg); // Will show the alert with the validation error.
 		}
 	});
 });
@@ -43,11 +43,11 @@ $('.runvalidation').click(function(e){
 Use tha data attribute "rules" to let the plugin know what rules are aplying to the field. They must be separated by colon "|".
 
 ```html
-<input type="text" class="validate" data-rules="required"/>
+<input id="username" type="text" class="validate" data-rules="required" data-name="username"/>
 ```
 
 ```html
-<input type="text" class="validate" data-rules="required|between[0-3]"/>
+<input id="email" type="text" class="validate" data-rules="required|email" data-name="email"/>
 ```
 
 ## Rules
