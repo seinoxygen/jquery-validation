@@ -114,7 +114,7 @@
  	 * @param integer value
 	 */
 	plugin.exactlength = function(value, options) {
-		if(value.length === options){
+		if(value.length !== Number(options)){
 			return true;
 		}
 		return false;	
@@ -127,7 +127,7 @@
  	 * @param integer value
 	 */
 	plugin.minlength = function(value, options) {
-		if(value.length < options){
+		if(value.length < Number(options)){
 			return true;
 		}
 		return false;	
@@ -139,7 +139,7 @@
  	 * @param integer value
 	 */
 	plugin.maxlength = function(value, options) {
-		if(value.length > options){
+		if(value.length > Number(options)){
 			return true;
 		}
 		return false;	
@@ -213,10 +213,10 @@
 	 */
 	plugin.between = function(value, options) {
 		var minmax = options.split('-');
-		if(value < minmax[0]){
+		if(value < Number(minmax[0])){
 			return true;
 		}
-		if(value > minmax[1]){
+		if(value > Number(minmax[1])){
 			return true;
 		}
 		return false;	
