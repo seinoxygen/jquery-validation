@@ -20,14 +20,19 @@ $('.validate').validate();
 ```
 
 #### With return
-With this way the plugin will run when the button is pressed and will return if the fields are valid. Also it will check validations on keyup
+This way the plugin will run when the button is pressed and will call teh callback functions. Also it will check validations on keyup.
 ```javascript
 $('.runvalidation').click(function(e){
 	e.preventDefault();
-	var valid = $('.validate').validate({auto: true});
-	if(valid){
-		alert("Great!");
-	}
+	$('.validate').validate({
+		force: true,
+		onSuccess: function(){
+			alert("Great! Let's do something!");
+		},
+		onError: function(){
+			alert("Booo!");
+		}
+	});
 });
 ```
 
@@ -59,8 +64,10 @@ integer  | Checks if the field is integer
 natural  | Checks if the field is natural
 decimal  | Checks if the field is decimal
 between[5-10]  | Checks if the numeric value is between 5 and 10
-matches[#password] | Checks if the field contains the same as field id password
+matches[#password] | Checks if the field contains the same as field id password. Can be used almost any selector.
 email  | Checks if the field contains a valid email
 url  | Checks if the field contains a valid url
 time  | Checks if the field contains a valid time
 date  | Checks if the field contains a valid date
+cc  | Checks if the field contains a valid credit card number
+cc[visa]  | Checks if the field contains a valid visa credit card number. Options are visa,mastercard,discover,amex and diners
