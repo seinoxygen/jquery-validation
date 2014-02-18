@@ -6,11 +6,12 @@
 		// Default config
 		var defaults = {
 			force: false,
-			error: '#EB4847',
-			success: '#63C76A',
+			color: {error:'#EB4847', success: '#63C76A'},
 			submit: '',
-			onSuccess: function(){},
-			onError: function(){}
+			valid: function(element){},
+			invalid: function(element, error){},
+			success: function(){},
+			error: function(){}
 		};
 		
 		// Update all configs
@@ -41,10 +42,10 @@
 		});
 		
 		if(is_valid === true){
-			options.onSuccess.call(this);
+			options.success.call(this);
 		}
 		else{
-			options.onError.call(this);
+			options.error.call(this);
 		}
 		
 		if(is_valid === true && options.submit.length > 0){
@@ -87,10 +88,10 @@
 				
 		// Apply the correct css to the field.
 		if(error){
-			$(element).css('border-color', options.error);
+			$(element).css('border-color', options.color.error);
 		}
 		else{
-			$(element).css('border-color', options.success);
+			$(element).css('border-color', options.color.success);
 		}
 		return error;
 	};
