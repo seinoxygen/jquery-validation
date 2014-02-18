@@ -5,6 +5,7 @@
 		
 		// Default config
 		var defaults = {
+			force: false,
 			error: '#EB4847',
 			success: '#63C76A',
 			submit: '',
@@ -13,17 +14,18 @@
 		};
 		
 		// Update all configs
-		var settings = $.extend(true, {}, defaults, options);
+		options = $.extend(true, {}, defaults, options);
 		
 		var is_valid = true; 
 		
 		// Check all fields
 		this.each(function() {
-			var error = plugin.check($(this), settings);
-			if(error === true){
-				is_valid = false;
-			}				
-		
+			if(options.force === true){
+				var error = plugin.check($(this), options);
+				if(error === true){
+					is_valid = false;
+				}
+			}
 			
 			$(this).keyup(function(e) {
 				e.preventDefault();
@@ -31,7 +33,7 @@
 				if (e.which === 13) {
 					return;
 				}
-				var error = plugin.check($(this), settings);
+				var error = plugin.check($(this), options);
 				if(error === true){
 					is_valid = false;
 				}
@@ -39,14 +41,14 @@
 		});
 		
 		if(is_valid === true){
-			settings.onSuccess.call(this);
+			options.onSuccess.call(this);
 		}
 		else{
-			settings.onError.call(this);
+			options.onError.call(this);
 		}
 		
-		if(is_valid === true && settings.submit.length > 0){
-			$(settings.submit).submit();
+		if(is_valid === true && options.submit.length > 0){
+			$(options.submit).submit();
 		}
 		
 		return this;
@@ -58,7 +60,7 @@
  	 * @param object value
  	 * @param object value
 	 */
-	plugin.check = function(element, settings) {
+	plugin.check = function(element, options) {
 		// Explode rules				
 		var rules = $(element).data('rules').split('|');
 				
@@ -68,27 +70,27 @@
 			var regex = /(.*?)\[(.*?)\]/;
 										
 			var func = rule;
-			var options = '';
+			var filter = '';
 				
 			// Check if arguments are enclosed in brackets			
 			var groups = regex.exec(rule);	
 			if(groups !== null){
 				func = groups[1];
-				options = groups[2];
+				filter = groups[2];
 			}
 					
 			// If the function exists call it.			
 			if (typeof(plugin[func]) !== "undefined") {
-				error = plugin[func]($(element).val(), options);
+				error = plugin[func]($(element).val(), filter);
 			}
 		}
 				
 		// Apply the correct css to the field.
 		if(error){
-			$(element).css('border-color', settings.error);
+			$(element).css('border-color', options.error);
 		}
 		else{
-			$(element).css('border-color', settings.success);
+			$(element).css('border-color', options.success);
 		}
 		return error;
 	};
