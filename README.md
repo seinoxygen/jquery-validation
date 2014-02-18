@@ -9,6 +9,7 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 
 ```html
 <script src="/path/to/jquery.validation.js"></script>
+<script src="/path/to/jquery.validation.en.js"></script>
 ```
 
 ## Initialize
@@ -26,10 +27,10 @@ $('.runvalidation').click(function(e){
 	e.preventDefault();
 	$('.validate').validate({
 		force: true,
-		onSuccess: function(){
+		success: function(){
 			alert("Great! Let's do something!");
 		},
-		onError: function(){
+		error: function(){
 			alert("Booo!");
 		}
 	});
