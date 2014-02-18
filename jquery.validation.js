@@ -5,25 +5,25 @@
 		
 		// Default config
 		var defaults = {
-			auto: false,
 			error: '#EB4847',
-			success: '#63C76A'
+			success: '#63C76A',
+			submit: '',
+			onSuccess: function(){},
+			onError: function(){}
 		};
 		
 		// Update all configs
-		var settings = $.extend(defaults, options);
+		var settings = $.extend(true, {}, defaults, options);
 		
-		var has_errors = false;
+		var is_valid = true; 
 		
 		// Check all fields
-		$(this).each(function() {
-			
-			if(settings.auto === true){
-				var error = plugin.check($(this), settings);
-				if(error === true){
-					has_errors = true;
-				}
-			}
+		this.each(function() {
+			var error = plugin.check($(this), settings);
+			if(error === true){
+				is_valid = false;
+			}				
+		
 			
 			$(this).keyup(function(e) {
 				e.preventDefault();
@@ -33,13 +33,23 @@
 				}
 				var error = plugin.check($(this), settings);
 				if(error === true){
-					has_errors = true;
+					is_valid = false;
 				}
 			});
 		});
 		
-		// Invert result !error = validation successful
-		return !has_errors;
+		if(is_valid === true){
+			settings.onSuccess.call(this);
+		}
+		else{
+			settings.onError.call(this);
+		}
+		
+		if(is_valid === true && settings.submit.length > 0){
+			$(settings.submit).submit();
+		}
+		
+		return this;
 	};
 	
 	/**
