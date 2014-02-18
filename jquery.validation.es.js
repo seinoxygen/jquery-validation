@@ -1,0 +1,20 @@
+var validation_lang = {
+	required: 'El campo %s es requerido.',
+	exactlength: 'El campo %s debe ser exactamente %k caracteres en largo.',
+	minlength: 'El campo %s debe ser al menos %k caracteres en largo.',
+	maxlength: 'El campo %s debe ser menos de %k caracteres en largo.',
+	alpha: 'El campo %s debe ser solo letras.',
+	alphanumeric: 'El campo %s debe ser solo letras y números.',
+	numeric: 'El campo %s debe ser un valor numérico.',
+	integer: 'El campo %s debe ser un número entero.',
+	natrual: 'El campo %s debe ser un número natural.',
+	decimal: 'El campo %s debe ser un número decimal.',
+	between: 'El campo %s debe ser un número entre %k y %n.',
+	matches: 'El campo %s debe ser igual al campo %k.',
+	email: 'El campo %s debe ser un email válido.',
+	url: 'El campo %s debe ser una url válida.',
+	ip: 'El campo %s debe ser una ip válida.',
+	time: 'El campo %s debe ser una hora válida.',
+	date: 'El campo %s debe ser una fecha válida.',	
+	cc: 'El campo %s no es un número de tarjeta de credito válido.'
+};

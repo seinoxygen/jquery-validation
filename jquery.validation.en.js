@@ -1,0 +1,20 @@
+var validation_lang = {
+	required: 'The %s field is required.',
+	exactlength: 'The %s field must be exactly %k characters in length.',
+	minlength: 'The %s field must be at least %k characters long.',
+	maxlength: 'The %s field must be less than %k characters long.',
+	alpha: 'The %s field must be letters only.',
+	alphanumeric: 'The %s field must be letters and numbers only.',
+	numeric: 'The %s field must be a numeric value.',
+	integer: 'The %s field must be an integer.',
+	natrual: 'The %s field must be a natural number.',
+	decimal: 'The %s field must be a decimal number.',
+	between: 'The %s field must be a value between %k and %n.',
+	matches: 'The %s field must match the field %k.',
+	email: 'The %s field must be a valid email.',
+	url: 'The %s field must be a valid url.',
+	ip: 'The %s field must be a valid ip.',
+	time: 'The %s field must be a valid time.',
+	date: 'The %s field must be a valid date.',	
+	cc: 'The %s field is not a valid credit card number.'
+};
