@@ -63,7 +63,7 @@
 	 */
 	plugin.check = function(element, options) {
 		// Explode rules				
-		var rules = $(element).data('rules').split('|');
+		var rules = element.data('rules').split('|');
 				
 		var error = false;
 		for (var i = 0; i < rules.length; i++) {
@@ -82,15 +82,30 @@
 					
 			// If the function exists call it.			
 			if (typeof(plugin[func]) !== "undefined") {
-				error = plugin[func]($(element).val(), filter);
+				error = plugin[func](element.val(), filter);
+				if(error === true){
+					break;
+				}
 			}
 		}
 				
 		// Apply the correct css to the field.
-		if(error){
+		if(error === true){
+			var field_name = '';
+			// If is set the field title use it
+			if (typeof(element.attr('title')) !== "undefined") {
+				field_name = element.attr('title');
+			}
+			// If is set the data attribute name use it
+			if (typeof(element.data('name')) !== "undefined") {
+				field_name = element.data('name');
+			}
+			// Call the invalid function
+			options.invalid.call(this, element, validation_lang[func].replace("%s", field_name).replace("%k", filter));
 			$(element).css('border-color', options.color.error);
 		}
 		else{
+			options.valid.call(this, element);
 			$(element).css('border-color', options.color.success);
 		}
 		return error;
