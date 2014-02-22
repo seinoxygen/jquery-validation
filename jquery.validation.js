@@ -20,9 +20,9 @@
 		var is_valid = true; 
 		
 		// Check all fields
-		this.each(function() {
+		$(this).each(function() {
 			if(options.force === true){
-				var error = plugin.check($(this), options);
+				var error = $.fn.validate.check($(this), options);
 				if(error === true){
 					is_valid = false;
 				}
@@ -34,7 +34,7 @@
 				if (e.which === 13) {
 					return;
 				}
-				var error = plugin.check($(this), options);
+				var error = $.fn.validate.check($(this), options);
 				if(error === true){
 					is_valid = false;
 				}
@@ -61,7 +61,7 @@
  	 * @param object value
  	 * @param object value
 	 */
-	plugin.check = function(element, options) {
+	$.fn.validate.check = function(element, options) {
 		// Explode rules				
 		var rules = element.data('rules').split('|');
 				
@@ -81,14 +81,14 @@
 			}
 					
 			// If the function exists call it.			
-			if (typeof(plugin[func]) !== "undefined") {
-				error = plugin[func](element.val(), filter);
+			if (typeof($.fn.validate[func]) !== "undefined") {
+				error = $.fn.validate[func](element.val(), filter);
 				if(error === true){
 					break;
 				}
 			}
 		}
-				
+		
 		// Apply the correct css to the field.
 		if(error === true){
 			var field_name = '';
@@ -100,8 +100,11 @@
 			if (typeof(element.data('name')) !== "undefined") {
 				field_name = element.data('name');
 			}
+		
 			// Call the invalid function
-			options.invalid.call(this, element, validation_lang[func].replace("%s", field_name).replace("%k", filter));
+			var parts = filter.split('-');
+			
+			options.invalid.call(this, element, validation_lang[func].replace("%s", field_name).replace("%k", parts[0]).replace("%k", parts[1]));
 			$(element).css('border-color', options.color.error);
 		}
 		else{
@@ -116,7 +119,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.required = function(value) {
+	$.fn.validate.required = function(value) {
 		if(value.length === 0){
 			return true;
 		}
@@ -129,7 +132,7 @@
  	 * @param string value
  	 * @param integer value
 	 */
-	plugin.exactlength = function(value, options) {
+	$.fn.validate.exactlength = function(value, options) {
 		if(value.length !== Number(options)){
 			return true;
 		}
@@ -142,7 +145,7 @@
  	 * @param string value
  	 * @param integer value
 	 */
-	plugin.minlength = function(value, options) {
+	$.fn.validate.minlength = function(value, options) {
 		if(value.length < Number(options)){
 			return true;
 		}
@@ -154,7 +157,7 @@
  	 * @param string value
  	 * @param integer value
 	 */
-	plugin.maxlength = function(value, options) {
+	$.fn.validate.maxlength = function(value, options) {
 		if(value.length > Number(options)){
 			return true;
 		}
@@ -166,7 +169,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.alpha = function(value) {
+	$.fn.validate.alpha = function(value) {
 		var regex = /^([a-z])+$/i;
 		return !regex.test(value);
 	};
@@ -176,7 +179,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.alphanumeric = function(value) {
+	$.fn.validate.alphanumeric = function(value) {
 		var regex = /^([a-z0-9])+$/i;
 		return !regex.test(value);
 	};
@@ -186,7 +189,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.numeric = function(value) {
+	$.fn.validate.numeric = function(value) {
 		var regex = /^[\-+]?[0-9]*\.?[0-9]+$/;
 		return !regex.test(value);
 	};
@@ -196,7 +199,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.integer = function(value) {
+	$.fn.validate.integer = function(value) {
 		var regex = /^[\-+]?[0-9]+$/;
 		return !regex.test(value);
 	};
@@ -206,7 +209,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.natrual = function(value) {
+	$.fn.validate.natrual = function(value) {
 		var regex = /^[0-9]+$/;
 		return !regex.test(value);
 	};
@@ -216,7 +219,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.decimal = function(value) {
+	$.fn.validate.decimal = function(value) {
 		var regex = /^[\-+]?[0-9]+\.[0-9]+$/;
 		return !regex.test(value);
 	};
@@ -227,7 +230,7 @@
  	 * @param string value
  	 * @param integer value
 	 */
-	plugin.between = function(value, options) {
+	$.fn.validate.between = function(value, options) {
 		var minmax = options.split('-');
 		if(value < Number(minmax[0])){
 			return true;
@@ -244,7 +247,7 @@
  	 * @param string value
  	 * @param string options
 	 */
-	plugin.matches = function(value, options) {
+	$.fn.validate.matches = function(value, options) {
 		var other = $(options).val();
 		if(value !== other){
 			return true;
@@ -258,7 +261,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.email = function(value) {
+	$.fn.validate.email = function(value) {
 		var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return !regex.test(value);
 	};
@@ -269,7 +272,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.url = function(value) {
+	$.fn.validate.url = function(value) {
 		var regex = /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/;;
 		return !regex.test(value);
 	};
@@ -280,7 +283,7 @@
 	 *
  	 * @param string value
 	 */
-	plugin.ip = function(value) {
+	$.fn.validate.ip = function(value) {
 		var regex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
 		return !regex.test(value);
 	};
@@ -290,7 +293,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.time = function(value) {
+	$.fn.validate.time = function(value) {
 		var regex = /^([0]\d|[1][0-2]):([0-5]\d)\s?(?:AM|PM)$/;
 		return !regex.test(value);
 	};
@@ -300,7 +303,7 @@
 	 * 
  	 * @param string value
 	 */
-	plugin.date = function(value) {
+	$.fn.validate.date = function(value) {
 		var regex = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
 		return !regex.test(value);
 	};
@@ -311,7 +314,7 @@
  	 * @param string value
  	 * @param string options
 	 */
-	plugin.cc = function(value, options) {
+	$.fn.validate.cc = function(value, options) {
 		var cc = [
 			/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/, // Visa
 			/^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/, // Mastercard
