@@ -104,7 +104,7 @@
 			// Call the invalid function
 			var parts = filter.split('-');
 			
-			options.invalid.call(this, element, validation_lang[func].replace("%s", field_name).replace("%k", parts[0]).replace("%k", parts[1]));
+			options.invalid.call(this, element, validation_lang[func].replace("%s", field_name).replace("%k", parts[0]).replace("%n", parts[1]));
 			$(element).css('border-color', options.color.error);
 		}
 		else{
