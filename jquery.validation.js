@@ -28,12 +28,21 @@
 				}
 			}
 			
+			// For textboxes
 			$(this).keyup(function(e) {
 				e.preventDefault();
 				// Ignore enter
 				if (e.which === 13) {
 					return;
 				}
+				var error = $.fn.validate.check($(this), options);
+				if(error === true){
+					is_valid = false;
+				}
+			});
+			
+			// For radio, checkbox and selects
+			$(this).change(function() {
 				var error = $.fn.validate.check($(this), options);
 				if(error === true){
 					is_valid = false;
@@ -62,7 +71,13 @@
  	 * @param object value
 	 */
 	$.fn.validate.check = function(element, options) {
-		// Explode rules				
+		
+		// If attribute is not defined return false because there is no rules to apply
+		if (typeof(element.data('rules')) === "undefined") {
+			return false;
+		}
+		
+		// Explode rules			
 		var rules = element.data('rules').split('|');
 				
 		var error = false;
@@ -82,7 +97,17 @@
 					
 			// If the function exists call it.			
 			if (typeof($.fn.validate[func]) !== "undefined") {
-				error = $.fn.validate[func](element.val(), filter);
+				
+				var value = element.val();
+				
+				// Verify the tipe of element. If they're radios or checkboxes look for checkeds
+				var type = element.attr("type");
+				if (type == "radio" || type == "checkbox"){
+					// lenght is obtained ahead in the rules
+					value = $('input[name=' + element.attr("name") + ']:checked');
+				}
+				
+				error = $.fn.validate[func](value, filter);
 				if(error === true){
 					break;
 				}
