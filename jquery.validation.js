@@ -1,3 +1,11 @@
+/*
+* Form Validation 1.1, jQuery plugin
+*
+* Copyright(c) 2014, Pablo Cornehl
+* http://www.seinoxygen.com
+*
+* Licensed under the MIT License
+*/
 (function($) {    
     var plugin = $(this);
     
