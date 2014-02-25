@@ -1,5 +1,6 @@
 /*
 * Form Validation 1.1, jQuery plugin
+* Repository: http://github.com/seinoxygen/jquery-validation
 *
 * Copyright(c) 2014, Pablo Cornehl
 * http://www.seinoxygen.com
