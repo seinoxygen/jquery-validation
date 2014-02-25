@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>jQuery Validation</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="../jquery.validation.js"></script>
+		<script src="../jquery.validation.en.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			.bg-warning{padding:15px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Default</h2>
+					<p class="bg-warning">While you complete the fields the border will be changing between red and green. Displaying red when you entered the correct data and red when you didn't.</p>
+					<form role="form">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control validate" id="name" data-rules="required" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<label for="email">Email address</label>
+							<input type="text" class="form-control validate" id="email" data-rules="email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control validate" id="password" data-rules="minlength[5]" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="passconf">Confirm Password</label>
+							<input type="password" class="form-control validate" id="passconf" data-rules="matches[#password]" placeholder="Password">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="validate"> I accept the TOS.
+							</label>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.validate').validate();
+		});
+		</script>
+	</body>
+</html>
