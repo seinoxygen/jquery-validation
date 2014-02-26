@@ -15,7 +15,7 @@
 		// Default config
 		var defaults = {
 			force: false,
-			color: {error:'#EB4847', success: '#63C76A'},
+			wapper: 'jqv-',
 			submit: '',
 			valid: function(element){},
 			invalid: function(element, error){},
@@ -72,7 +72,7 @@
 		
 		return this;
 	};
-	
+		
 	/**
 	 * Run the rules in the field.
 	 * 
@@ -138,12 +138,14 @@
 			// Call the invalid function
 			var parts = filter.split('-');
 			
-			options.invalid.call(this, element, validation_lang[func].replace("%s", field_name).replace("%k", parts[0]).replace("%n", parts[1]));
-			$(element).css('border-color', options.color.error);
+			var msg = validation_lang[func].replace("%s", field_name).replace("%k", parts[0]).replace("%n", parts[1]);
+			
+			options.invalid.call(this, element, msg);
+			$(element).removeClass(options.wapper + 'valid').addClass(options.wapper + 'invalid');
 		}
 		else{
 			options.valid.call(this, element);
-			$(element).css('border-color', options.color.success);
+			$(element).removeClass(options.wapper + 'invalid').addClass(options.wapper + 'valid');
 		}
 		return error;
 	};
