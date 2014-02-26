@@ -51,12 +51,15 @@
 			});
 			
 			// For radio, checkbox and selects
-			$(this).change(function() {
-				var error = $.fn.validate.check($(this), options);
-				if(error === true){
-					is_valid = false;
-				}
-			});
+			var type = $(this).attr("type");
+			if (type == "radio" || type == "checkbox"){
+				$(this).change(function() {
+					var error = $.fn.validate.check($(this), options);
+					if(error === true){
+						is_valid = false;
+					}
+				});
+			}
 		});
 		
 		if(is_valid === true){
