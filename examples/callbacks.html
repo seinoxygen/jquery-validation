@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>jQuery Validation</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="../jquery.validation.js"></script>
+		<script src="../jquery.validation.en.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../jquery.validation.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			.bg-warning,
+			.bg-danger{padding:15px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Default</h2>
+					<p class="bg-warning">While you complete the fields the border will be changing between red and green. Displaying red when you entered the correct data and red when you didn't.</p>
+					<form role="form">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control validate" id="name" data-rules="required" title="Name" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<label for="email">Email address</label>
+							<input type="text" class="form-control validate" id="email" data-rules="email" title="Email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control validate" id="password" data-rules="minlength[5]" title="Password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="passconf">Confirm Password</label>
+							<input type="password" class="form-control validate" id="passconf" data-rules="matches[#password]" title="Confirm Password" placeholder="Password">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="validate" data-rules="required" name="tos"> I accept the TOS.
+							</label>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.validate').validate({
+				invalid: function(el, msg){
+					el.parent().find('.bg-danger').remove();
+					el.after("<p class='bg-danger'>"+msg+"</p>");
+				},
+				valid: function(el){
+					el.parent().find('.bg-danger').remove();
+				}
+			});
+		});
+		</script>
+	</body>
+</html>
