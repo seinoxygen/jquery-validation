@@ -128,20 +128,17 @@
 		
 		// Apply the correct css to the field.
 		if(error === true){
-			var field_name = '';
-			// If is set the field title use it
-			if (typeof(element.attr('title')) !== "undefined") {
-				field_name = element.attr('title');
-			}
-			// If is set the data attribute name use it
-			if (typeof(element.data('name')) !== "undefined") {
-				field_name = element.data('name');
-			}
-		
+			
+			var field_label = $.fn.validate.fieldlabel(element);
+			
 			// Call the invalid function
 			var parts = filter.split('-');
 			
-			var msg = validation_lang[func].replace("%s", field_name).replace("%k", parts[0]).replace("%n", parts[1]);
+			if(func == "matches"){
+				parts[0] = $.fn.validate.fieldlabel($(parts[0]));
+			}
+			
+			var msg = validation_lang[func].replace("%s", field_label).replace("%k", parts[0]).replace("%n", parts[1]);
 			
 			options.invalid.call(this, element, msg);
 			$(element).removeClass(options.wapper + 'valid').addClass(options.wapper + 'invalid');
@@ -151,6 +148,20 @@
 			$(element).removeClass(options.wapper + 'invalid').addClass(options.wapper + 'valid');
 		}
 		return error;
+	};
+	
+	$.fn.validate.fieldlabel = function(element){
+		var field_label = '';
+		// If is set the field title use it
+		if (typeof(element.attr('title')) !== "undefined") {
+			field_label = element.attr('title');
+		}
+		// If is set the data attribute name use it
+		if (typeof(element.data('name')) !== "undefined") {
+			field_label = element.data('name');
+		}
+		
+		return field_label;
 	};
 		
 	/**
