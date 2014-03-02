@@ -1,4 +1,4 @@
-jquery.validation [![Code Climate](https://codeclimate.com/github/seinoxygen/jquery-validation.png)](https://codeclimate.com/github/seinoxygen/jquery-validation)
+jquery.validation [![GitHub version](https://badge.fury.io/gh/seinoxygen%2Fjquery-validation.png)](http://badge.fury.io/gh/seinoxygen%2Fjquery-validation) [![Code Climate](https://codeclimate.com/github/seinoxygen/jquery-validation.png)](https://codeclimate.com/github/seinoxygen/jquery-validation)
 =================
 
 Simple validation plugin that uses data type attributes as validation rules.
