@@ -7,7 +7,7 @@
 *
 * Licensed under the MIT License
 */
-(function($) {    
+(function($, window, undefined){  
     var plugin = $(this);
     
 	$.fn.validate = function(options) {
@@ -439,4 +439,4 @@
 		return ((checksum % 10) !== 0);
 	};
 		
-}(jQuery));
+})(jQuery, window);
