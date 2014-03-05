@@ -175,6 +175,18 @@
 		}
 		return false;		
 	};
+	
+	/**
+	 * Checks if the field is not zero.
+	 * 
+ 	 * @param string value
+	 */
+	$.fn.validate.nozero = function(value) {
+		if(Number(value) === 0){
+			return true;
+		}
+		return false;		
+	};
 		
 	/**
 	 * Checks if the field is x characters long.
