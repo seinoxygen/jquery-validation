@@ -9,7 +9,7 @@ Include script *after* the jQuery library.
 
 ```html
 <script src="/path/to/jquery.validation.js"></script>
-<script src="/path/to/jquery.validation.en.js"></script>
+<script src="/path/to/locales/jquery.validation.en.js"></script>
 ```
 
 ## Initialize
