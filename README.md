@@ -55,6 +55,7 @@ Use tha data attribute "rules" to let the plugin know what rules are aplying to 
 Usage | Description
 ------------- | -------------
 required  | Checks if the field is not empty
+nozero  | Checks if the value is not zero
 exactlength[5]  | Checks if the field is 5 charactes length
 minlength[5]  | Checks if the field at least 5 charactes long
 maxlength[5]  | Checks if the field is less than 5 characters long
