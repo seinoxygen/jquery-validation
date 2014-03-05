@@ -7,9 +7,7 @@
 *
 * Licensed under the MIT License
 */
-(function($, window, undefined){  
-    var plugin = $(this);
-    
+(function($, window, undefined){      
 	$.fn.validate = function(options) {
 		
 		// Default config
@@ -17,10 +15,10 @@
 			force: false,
 			wrapper: 'jqv-',
 			submit: '',
-			valid: function(element){},
-			invalid: function(element, error){},
-			success: function(){},
-			error: function(){}
+			valid: function(element){}, // Called when the field is valid
+			invalid: function(element, error){}, // Called when the field is invalid
+			success: function(){}, // Called when all the fields were validated correctly
+			error: function(){} // Called when at least one field has an error
 		};
 		
 		// Update all configs
@@ -29,7 +27,7 @@
 		var is_valid = true; 
 		
 		// Check all fields
-		$(this).each(function() {
+		this.each(function() {
 			if(options.force === true){
 				var error = $.fn.validate.check($(this), options);
 				if(error === true){
