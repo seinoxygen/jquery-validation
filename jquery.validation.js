@@ -53,7 +53,7 @@
 			
 			// For radio, checkbox and selects
 			var type = $(this).attr("type");
-			if (type == "radio" || type == "checkbox"){
+			if (type === "radio" || type === "checkbox"){
 				$(this).change(function() {
 					var error = $.fn.validate.check($(this), options);
 					if(error === true){
@@ -90,7 +90,7 @@
 	$.fn.validate.check = function(element, options) {
 		
 		// If attribute is not defined return false because there is no rules to apply
-		if (typeof(element.data('rules')) === "undefined") {
+		if (typeof element.data('rules') == "undefined") {
 			return false;
 		}
 		
@@ -113,7 +113,7 @@
 			}
 					
 			// If the function exists call it.			
-			if (typeof($.fn.validate[func]) !== "undefined") {
+			if (typeof $.fn.validate[func] != "undefined") {
 				
 				var value = element.val();
 				
@@ -158,11 +158,11 @@
 	$.fn.validate.fieldlabel = function(element){
 		var field_label = '';
 		// If is set the field title use it
-		if (typeof(element.attr('title')) !== "undefined") {
+		if (typeof element.attr('title') != "undefined") {
 			field_label = element.attr('title');
 		}
 		// If is set the data attribute name use it
-		if (typeof(element.data('name')) !== "undefined") {
+		if (typeof element.data('name') != "undefined") {
 			field_label = element.data('name');
 		}
 		
