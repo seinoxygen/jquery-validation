@@ -1,5 +1,6 @@
 var validation_lang = {
 	required: 'The %s field is required.',
+	nozero: 'The %s field can not be zero.',
 	exactlength: 'The %s field must be exactly %k characters in length.',
 	minlength: 'The %s field must be at least %k characters long.',
 	maxlength: 'The %s field must be less than %k characters long.',

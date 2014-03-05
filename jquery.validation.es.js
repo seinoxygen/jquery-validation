@@ -1,5 +1,6 @@
 var validation_lang = {
 	required: 'El campo %s es requerido.',
+	nozero: 'El campo %s es no puede ser cero.',
 	exactlength: 'El campo %s debe ser exactamente %k caracteres en largo.',
 	minlength: 'El campo %s debe ser al menos %k caracteres en largo.',
 	maxlength: 'El campo %s debe ser menos de %k caracteres en largo.',
