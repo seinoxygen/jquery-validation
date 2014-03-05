@@ -52,8 +52,8 @@
 			});
 			
 			// For radio, checkbox and selects
-			var type = $(this).attr("type");
-			if (type === "radio" || type === "checkbox"){
+			var type = $(this).attr("type");			
+			if ($(this).is('select') || type === "radio" || type === "checkbox"){
 				$(this).change(function() {
 					var error = $.fn.validate.check($(this), options);
 					if(error === true){
