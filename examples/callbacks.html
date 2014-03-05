@@ -37,6 +37,15 @@
 							<label for="passconf">Confirm Password</label>
 							<input type="password" class="form-control validate" id="passconf" data-rules="minlength[5]|matches[#password]" title="Confirm Password" placeholder="Password">
 						</div>
+						<div class="form-group">
+							<label for="passconf">Gender</label>
+							<select class="form-control validate" name="gender" data-rules="nozero" title="Gender">
+								<option value="0">Select a gender</option>
+								<option value="1">Male</option>
+								<option value="2">Female</option>
+								<option value="3">Other</option>
+							</select>
+						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" class="validate" data-rules="required" name="tos"> I accept the TOS.
