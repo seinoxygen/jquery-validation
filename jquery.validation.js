@@ -24,7 +24,8 @@
 		// Update all configs
 		options = $.extend(true, {}, defaults, options);
 		
-		var is_valid = true; 
+		var is_valid = true;
+		var checked = false;
 		
 		// Check all fields
 		this.each(function() {
@@ -33,6 +34,7 @@
 				if(error === true){
 					is_valid = false;
 				}
+				checked = true;
 			}
 			
 			// For textboxes
@@ -46,6 +48,7 @@
 				if(error === true){
 					is_valid = false;
 				}
+				checked = true;
 			});
 			
 			// For radio, checkbox and selects
@@ -56,14 +59,18 @@
 					if(error === true){
 						is_valid = false;
 					}
+					checked = true;
 				});
 			}
 		});
 		
-		if(is_valid === true){
+		// If it has been checked in one way, and fields are valid then call the success callback.
+		if (is_valid === true && checked === true){
 			options.success.call(this);
 		}
-		else{
+		
+		// If it has been checked and some field throws error then call the error callback.
+		if (is_valid === false && checked === true){
 			options.error.call(this);
 		}
 		
