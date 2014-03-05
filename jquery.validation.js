@@ -15,7 +15,7 @@
 		// Default config
 		var defaults = {
 			force: false,
-			wapper: 'jqv-',
+			wrapper: 'jqv-',
 			submit: '',
 			valid: function(element){},
 			invalid: function(element, error){},
@@ -141,11 +141,11 @@
 			var msg = validation_lang[func].replace("%s", field_label).replace("%k", parts[0]).replace("%n", parts[1]);
 			
 			options.invalid.call(this, element, msg);
-			$(element).removeClass(options.wapper + 'valid').addClass(options.wapper + 'invalid');
+			$(element).removeClass(options.wrapper + 'valid').addClass(options.wrapper + 'invalid');
 		}
 		else{
 			options.valid.call(this, element);
-			$(element).removeClass(options.wapper + 'invalid').addClass(options.wapper + 'valid');
+			$(element).removeClass(options.wrapper + 'invalid').addClass(options.wrapper + 'valid');
 		}
 		return error;
 	};
