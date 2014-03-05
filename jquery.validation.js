@@ -15,10 +15,10 @@
 			force: false,
 			wrapper: 'jqv-',
 			submit: '',
-			valid: function(element){}, // Called when the field is valid
-			invalid: function(element, error){}, // Called when the field is invalid
-			success: function(){}, // Called when all the fields were validated correctly
-			error: function(){} // Called when at least one field has an error
+			onValid: function(element){}, // Called when the field is valid
+			onInvalid: function(element, error){}, // Called when the field is invalid
+			onSuccess: function(){}, // Called when all the fields were validated correctly
+			onError: function(){} // Called when at least one field has an error
 		};
 		
 		// Update all configs
@@ -66,12 +66,12 @@
 		
 		// If it has been checked in one way, and fields are valid then call the success callback.
 		if (is_valid === true && checked === true){
-			options.success.call(this);
+			options.onSuccess.call(this);
 		}
 		
 		// If it has been checked and some field throws error then call the error callback.
 		if (is_valid === false && checked === true){
-			options.error.call(this);
+			options.onError.call(this);
 		}
 		
 		if(is_valid === true && options.submit.length > 0){
@@ -145,11 +145,11 @@
 			
 			var msg = validation_lang[func].replace("%s", field_label).replace("%k", parts[0]).replace("%n", parts[1]);
 			
-			options.invalid.call(this, element, msg);
+			options.onInvalid.call(this, element, msg);
 			$(element).removeClass(options.wrapper + 'valid').addClass(options.wrapper + 'invalid');
 		}
 		else{
-			options.valid.call(this, element);
+			options.onValid.call(this, element);
 			$(element).removeClass(options.wrapper + 'invalid').addClass(options.wrapper + 'valid');
 		}
 		return error;

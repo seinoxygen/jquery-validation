@@ -27,10 +27,10 @@ $('.runvalidation').click(function(e){
 	e.preventDefault();
 	$('.validate').validate({
 		force: true,
-		success: function(element){
+		onSuccess: function(element){
 			alert("Great! Let's do something!");
 		},
-		error: function(element, msg){
+		onError: function(element, msg){
 			alert(msg); // Will show the alert with the validation error.
 		}
 	});

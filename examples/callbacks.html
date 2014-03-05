@@ -50,17 +50,17 @@
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$('.validate').validate({
-				invalid: function(el, msg){
+				onInvalid: function(el, msg){
 					el.parent().find('.bg-danger').remove();
-					el.parent().after("<p class='bg-danger'>"+msg+"</p>");
+					el.after("<p class='bg-danger'>"+msg+"</p>");
 				},
-				valid: function(el){
+				onValid: function(el){
 					el.parent().find('.bg-danger').remove();
 				},
-				success: function(){
+				onSuccess: function(){
 					alert("Success! Let's submit the form.");
 				},
-				error: function(){
+				onError: function(){
 					alert("The form didn't passed the validation.");
 				}
 			});
