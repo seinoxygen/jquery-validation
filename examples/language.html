@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>jQuery Validation</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="../jquery.validation.js"></script>
+		<script src="../locales/jquery.validation.de.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../jquery.validation.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<style>
+			.bg-warning,
+			.bg-danger{padding:15px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Language</h2>
+					<p class="bg-warning">The rules will be checked when the submit button is pressed. The border will be changing between red and green also they will add a "contextual" message giving information about the field.</p>
+					<form role="form">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control validate" id="name" data-rules="required" title="Name" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<label for="email">Email address</label>
+							<input type="text" class="form-control validate" id="email" data-rules="email" title="Email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control validate" id="password" data-rules="minlength[5]" title="Password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="passconf">Confirm Password</label>
+							<input type="password" class="form-control validate" id="passconf" data-rules="minlength[5]|matches[#password]" title="Confirm Password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="passconf">Gender</label>
+							<select class="form-control validate" name="gender" data-rules="nozero" title="Gender">
+								<option value="0">Select a gender</option>
+								<option value="1">Male</option>
+								<option value="2">Female</option>
+								<option value="3">Other</option>
+							</select>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" class="validate" data-rules="required" name="tos"> I accept the TOS.
+							</label>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.btn-primary').click(function(e){
+				e.preventDefault();
+				$('.validate').validate({
+					force: true,
+					onInvalid: function(el, msg){
+						el.parent().find('.bg-danger').remove();
+						el.after("<p class='bg-danger'>"+msg+"</p>");
+					},
+					onValid: function(el){
+						el.parent().find('.bg-danger').remove();
+					},
+					onSuccess: function(){
+						alert("Success! Let's submit the form.");
+					},
+					onError: function(){
+						alert("The form didn't passed the validation.");
+					}
+				});
+			});
+		});
+		</script>
+	</body>
+</html>
