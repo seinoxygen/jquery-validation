@@ -40,7 +40,7 @@ $('.runvalidation').click(function(e){
 
 ## Usage
 
-Use tha data attribute "rules" to let the plugin know what rules are aplying to the field. They must be separated by colon "|".
+Use the data attribute "rules" to let the plugin know what rules are applying to the field. They must be separated by colon "|".
 
 ```html
 <input id="username" type="text" class="validate" data-rules="required" data-name="username"/>
@@ -49,6 +49,13 @@ Use tha data attribute "rules" to let the plugin know what rules are aplying to 
 ```html
 <input id="email" type="text" class="validate" data-rules="required|email" data-name="email"/>
 ```
+
+## Data Attributes
+
+Usage | Description
+------------- | -------------
+data-rules="required"  | Applies the required ruled to the current field.
+data-message="Please complete the field"  | Overrides the default message with the provided.
 
 ## Rules
 
