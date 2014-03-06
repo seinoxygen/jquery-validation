@@ -143,7 +143,14 @@
 				parts[0] = $.fn.validate.fieldlabel($(parts[0]));
 			}
 			
-			var msg = validation_lang[func].replace("%s", field_label).replace("%k", parts[0]).replace("%n", parts[1]);
+			var msg = validation_lang[func];
+			
+			// If exists a custom message use it.
+			if (typeof element.data('message') != "undefined") {
+				msg = element.data('message');
+			}
+			
+			msg = msg.replace("%s", field_label).replace("%k", parts[0]).replace("%n", parts[1]);
 			
 			options.onInvalid.call(this, element, msg);
 			$(element).removeClass(options.wrapper + 'valid').addClass(options.wrapper + 'invalid');
