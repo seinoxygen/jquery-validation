@@ -63,6 +63,7 @@
 				e.preventDefault();
 				$('.validate').validate({
 					force: true,
+					live: false,
 					onInvalid: function(el, msg){
 						el.parent().find('.bg-danger').remove();
 						el.after("<p class='bg-danger'>"+msg+"</p>");
