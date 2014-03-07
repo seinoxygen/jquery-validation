@@ -14,7 +14,7 @@
 		var defaults = {
 			force: false,
 			wrapper: 'jqv-',
-			submit: '',
+			formHandler: '',
 			onValid: function(element){}, // Called when the field is valid
 			onInvalid: function(element, error){}, // Called when the field is invalid
 			onSuccess: function(){}, // Called when all the fields were validated correctly
@@ -74,8 +74,9 @@
 			options.onError.call(this);
 		}
 		
-		if(is_valid === true && options.submit.length > 0){
-			$(options.submit).submit();
+		// If everything is valid and form handles has been declared, then submit.
+		if(is_valid === true && options.formHandler.length > 0){
+			$(options.formHandler).submit();
 		}
 		
 		return this;
