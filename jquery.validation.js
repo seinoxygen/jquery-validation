@@ -13,6 +13,7 @@
 		// Default config
 		var defaults = {
 			force: false,
+			live: true,
 			wrapper: 'jqv-',
 			formHandler: '',
 			onValid: function(element){}, // Called when the field is valid
@@ -37,30 +38,32 @@
 				checked = true;
 			}
 			
-			// For textboxes
-			$(this).keyup(function(e) {
-				e.preventDefault();
-				// Ignore enter
-				if (e.which === 13) {
-					return;
-				}
-				var error = $.fn.validate.check($(this), options);
-				if(error === true){
-					is_valid = false;
-				}
-				checked = true;
-			});
-			
-			// For radio, checkbox and selects
-			var type = $(this).attr("type");			
-			if ($(this).is('select') || type === "radio" || type === "checkbox"){
-				$(this).change(function() {
+			if(options.live === true){
+				// For textboxes and textareas.
+				$(this).keyup(function(e) {
+					e.preventDefault();
+					// Ignore enter
+					if (e.which === 13) {
+						return;
+					}
 					var error = $.fn.validate.check($(this), options);
 					if(error === true){
 						is_valid = false;
 					}
 					checked = true;
 				});
+				
+				// For radio, checkbox and selects.
+				var type = $(this).attr("type");			
+				if ($(this).is('select') || type === "radio" || type === "checkbox"){
+					$(this).change(function() {
+						var error = $.fn.validate.check($(this), options);
+						if(error === true){
+							is_valid = false;
+						}
+						checked = true;
+					});
+				}
 			}
 		});
 		
