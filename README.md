@@ -15,7 +15,7 @@ Include script *after* the jQuery library.
 ## Initialize
 
 #### Normal
-This way the plugin will validate fields on keyup.
+This way the plugin will validate fields on keyup and/or checkboxes, radio buttons and selects change their state.
 ```javascript
 $('.validate').validate();
 ```
