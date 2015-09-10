@@ -15,6 +15,7 @@
 			force: false,
 			live: true,
 			wrapper: 'jqv-',
+			form: '', // Parent form
 			formHandler: '',
 			onValid: function(element){}, // Called when the field is valid
 			onInvalid: function(element, error){}, // Called when the field is invalid
@@ -30,39 +31,49 @@
 		
 		// Check all fields
 		this.each(function() {
-			if(options.force === true){
-				var error = $.fn.validate.check($(this), options);
-				if(error === true){
-					is_valid = false;
-				}
-				checked = true;
+			var parentForm = $(this).closest("form");
+			
+			// If form not set try to use the same
+			if(options.form === ''){
+				options.form = parentForm;
 			}
 			
-			if(options.live === true){
-				// For textboxes and textareas.
-				$(this).keyup(function(e) {
-					e.preventDefault();
-					// Ignore enter
-					if (e.which === 13) {
-						return;
-					}
+			// Check fields within the same form
+			if(parentForm.is($(options.form))){
+				if(options.force === true){
 					var error = $.fn.validate.check($(this), options);
 					if(error === true){
 						is_valid = false;
 					}
 					checked = true;
-				});
+				}
 				
-				// For radio, checkbox and selects.
-				var type = $(this).attr("type");			
-				if ($(this).is('select') || type === "radio" || type === "checkbox"){
-					$(this).change(function() {
+				if(options.live === true){
+					// For textboxes and textareas.
+					$(this).keyup(function(e) {
+						e.preventDefault();
+						// Ignore enter
+						if (e.which === 13) {
+							return;
+						}
 						var error = $.fn.validate.check($(this), options);
 						if(error === true){
 							is_valid = false;
 						}
 						checked = true;
 					});
+					
+					// For radio, checkbox and selects.
+					var type = $(this).attr("type");			
+					if ($(this).is('select') || type === "radio" || type === "checkbox"){
+						$(this).change(function() {
+							var error = $.fn.validate.check($(this), options);
+							if(error === true){
+								is_valid = false;
+							}
+							checked = true;
+						});
+					}
 				}
 			}
 		});
